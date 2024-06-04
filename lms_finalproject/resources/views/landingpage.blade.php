@@ -43,7 +43,7 @@
             <div class="feature-item">
                 <img src="feature-image1.png" alt="Feature Image">
                 <h2>Penilaian yang Mudah</h2>
-                <p>Pengelolaan penilaian tidak pernah semudah ini! Dengan fitur Penilaian yang terintegrasi dalam [Nama LMS], proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
+                <p>Pengelolaan penilaian tidak pernah semudah ini Dengan fitur Penilaian yang terintegrasi dalam [Nama LMS], proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
                 <button class="cta">Mulai Sekarang</button>
             </div>
             <div class="feature-item">
