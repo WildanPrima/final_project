@@ -6,8 +6,6 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body
-
 header {
     background: #fff;
     padding: 20px 0;
@@ -75,8 +73,8 @@ nav ul li a {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Add this line */
-    text-align: center; /* Add this line */
+    margin: 0 auto;
+    text-align: center;
 }
 
         .login-container form .form-control {
@@ -114,7 +112,7 @@ nav ul li a {
         </div>
     </header>
     <div class="login-container">
-        <h3 class="text-center mb-4">Welcome back!</h3>
+        <h3 class="text-center mb-4">Welcome back! 👋</h3>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">

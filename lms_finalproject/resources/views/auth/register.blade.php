@@ -109,7 +109,7 @@
         </div>
     </header>
     <div class="registration-container">
-        <h3 class="text-center mb-4">Welcome back!</h3>
+        <h3 class="text-center mb-4">Welcome back! 👋</h3>
         <p class="text-center">Please Sign Up to make your account.</p>
         <form method="POST" action="{{ route('register') }}">
             @csrf
