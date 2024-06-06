@@ -21,15 +21,12 @@ use App\Http\Controllers\RaporController;
 // Landing Page
 Route::view('/', 'landingpage');
 
-<<<<<<< HEAD
 Route::get('/admin', function () {
     return view('admin.pages.dashboard');
 });
 
 
-=======
 // Authentication Routes
->>>>>>> 36c19d1ae71635f1856c5bf237ec2ce6d5c806cc
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
