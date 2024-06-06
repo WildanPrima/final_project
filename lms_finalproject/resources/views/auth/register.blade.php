@@ -5,90 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        header {
-            background: #fff;
-            padding: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .auth-buttons {
-            float: right;
-        }
-
-        .auth-buttons button {
-            margin-left: 20px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .auth-buttons .login {
-            background: #fff;
-            color: #000;
-            border: 1px solid #ddd;
-        }
-
-        .auth-buttons .signup {
-            background: #7f3ce7;
-            color: #fff;
-        }
-
-        .registration-container {
-            max-width: 400px;
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .registration-container form .form-control {
-            margin-bottom: 1rem;
-        }
-
-        .registration-container form .btn {
-            width: 100%;
-            background-color: #6c63ff;
-            color: white;
-        }
-
-        .registration-container form .btn:hover {
-            background-color: #5a54d6;
-        }
-
-        .registration-container .text-center a {
-            color: #6c63ff;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
 </head>
 <body>
     <header>
@@ -130,7 +47,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
             <div class="text-center mt-3">
-                <span>Don't have an account? <a href="#">Sign Up</a></span>
+                <span>Already have an account? <a href="#">Login</a></span>
             </div>
         </form>
     </div>

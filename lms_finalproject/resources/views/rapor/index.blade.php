@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/mapel.css') }}">
+    <title>Rapor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/rapor.css') }}">
 </head>
 <body>
     <header>
@@ -24,27 +22,53 @@
             </div>
         </div>
     </header>
-
-    <main class="main-container">
-        <div class="container">
-            <h1>Selamat Datang Di Kelas 12! 👋</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
-                @foreach($mapels as $mapel)
-                    <div class="mapel-card">
-                        <img src="{{ asset($mapel['image']) }}" alt="{{ $mapel['name'] }}">
-                        <div class="p-4">
-                            <h3 class="text-xl">{{ $mapel['name'] }}</h3>
-                            <p>{{ $mapel['description'] }}</p>
-                            <div class="flex items-center mt-4">
-                                <i class="fas fa-user-graduate text-gray-500"></i>
-                                <span class="ml-2 text-gray-600">{{ $mapel['students'] }} siswa</span>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+        <div class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Search in your rapor...">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option>Latest</option>
+                        <option>Oldest</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option>All Category</option>
+                        <option>Category 1</option>
+                        <option>Category 2</option>
+                    </select>
+                </div>
+                <div class="col-md-3 text-end">
+                    <button class="btn btn-primary">Download</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Mata Pelajaran</th>
+                            <th>Tugas 1</th>
+                            <th>Tugas 2</th>
+                            <th>Tugas 3</th>
+                            <th>Ujian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($rapor as $rapor)
+                            <tr>
+                                <td>{{ $rapor['subject'] }}</td>
+                                <td>{{ $rapor['task1'] ?? '' }}</td>
+                                <td>{{ $rapor['task2'] ?? '' }}</td>
+                                <td>{{ $rapor['task3'] ?? '' }}</td>
+                                <td>{{ $rapor['exam'] ?? '' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    </main>
 
     <footer class="bg-black text-white py-8">
         <div class="container mx-auto px-6">
