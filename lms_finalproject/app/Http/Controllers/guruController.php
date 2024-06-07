@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nilai;
 use Illuminate\Http\Request;
 
-class dataNilai extends Controller
+class guruController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +12,11 @@ class dataNilai extends Controller
     public function index()
     {
         //
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('admin.pages.register');
     }
 
     /**
@@ -34,7 +38,7 @@ class dataNilai extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Nilai $nilai)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +46,7 @@ class dataNilai extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Nilai $nilai)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +54,7 @@ class dataNilai extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Nilai $nilai)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +62,7 @@ class dataNilai extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Nilai $nilai)
+    public function destroy(string $id)
     {
         //
     }

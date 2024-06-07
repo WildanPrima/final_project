@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -25,29 +27,62 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $this->validateLogin($request);
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|min:3|max:15',
+            'password' => 'required',
+        ]);
 
-        if (Auth::once($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+        if ($validator->fails()) {
+            return redirect()->route('login')
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        return back()->withErrors([
-            'email' => __('validation.invalid_credentials'),
-        ]);
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            $request->session()->regenerate();
+            $user = User::where('id', Auth::user()->id)->first();
+            // $user = User::find(Auth::user()->id);
+            // if ($user->hasRole('superadmin')){
+            //     return redirect()->route('admin_table');
+            // } else {
+            //     return redirect()->route('product');
+            // }
+            // $user = Auth::user()->id;
+            // $user_id = User::where('id', $user)->first();
+
+            if ($user->hasRole('admin')) {
+                return view('admin.pages.data_siswa', ['user' => $user]);
+            } else {
+                return view('account-settings', ['user' => $user]);
+            }
+            // return redirect()->route('data-siswa.index');
+        } else {
+            return redirect()->route('login')
+                ->with('error', 'Login failed email or password is incorrect');
+        }
+        // $credentials = $this->validateLogin($request);
+
+        // if (Auth::once($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/');
+        // }
+
+        // return back()->withErrors([
+        //     'email' => __('validation.invalid_credentials'),
+        // ]);
     }
 
-    /**
-     * Validasi data login.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function validateLogin(Request $request)
-    {
-        return $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-    }
+    // /**
+    //  * Validasi data login.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return array
+    //  */
+    // protected function validateLogin(Request $request)
+    // {
+    //     return $request->validate([
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required'],
+    //     ]);
+    // }
 }

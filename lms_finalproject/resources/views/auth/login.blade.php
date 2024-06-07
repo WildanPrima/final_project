@@ -30,19 +30,19 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">
-                <label for="email">E-mail or phone number</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Type your e-mail or phone number" required>
+                <label for="username">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Masukkan NIS/NIP anda">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Type your password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Type your password">
             </div>
             <div class="form-group text-end">
                 <a href="#">Forgot Password?</a>
             </div>
             <button type="submit" class="btn btn-primary">Log In</button>
             <div class="text-center mt-3">
-                <span>Don't have an account? <a href="#">Sign Up</a></span>
+                <span>Don't have an account? <a href="{{ route('register') }}">Sign Up</a></span>
             </div>
         </form>
     </div>
