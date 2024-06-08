@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class guruController extends Controller
 {
@@ -12,6 +15,9 @@ class guruController extends Controller
     public function index()
     {
         //
+        $user = Auth::user()->id;
+        $guru = Guru::latest()->paginate(5);
+        return view('admin.pages.data_guru', compact('user', 'guru'));
     }
 
     public function showRegistrationForm()
@@ -33,6 +39,38 @@ class guruController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'NIP' => 'required|integer|unique:gurus',
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:255',
+            'address' => 'required|string|max:255',
+            'gender' => 'required|in:male,female',
+            'phone' => 'required|string|max:20'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('data-guru.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $guru = Guru::create([
+            'user_id' => null,
+            'NIP' => $request->NIP,
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+        ]);
+
+        if ($guru) {
+            return redirect()->route('data-guru.index')
+                ->with('success', 'Data guru berhasil ditambahkan.');
+        } else {
+            return redirect()->route('data-guru.index')
+                ->with('error', 'Failed to create user');
+        }
     }
 
     /**
@@ -49,6 +87,8 @@ class guruController extends Controller
     public function edit(string $id)
     {
         //
+        $guru = Guru::find($id);
+        return response()->json($guru);
     }
 
     /**
@@ -57,6 +97,25 @@ class guruController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'NIP' => 'required|numeric',
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:255',
+            'address' => 'required|string|max:255',
+            'gender' => 'required|string|in:male,female',
+            'phone' => 'nullable|string|max:20',
+        ]);
+    
+        $guru = Guru::find($id);
+        $guru->NIP = $request->NIP;
+        $guru->name = $request->name;
+        $guru->email = $request->email;
+        $guru->address = $request->address;
+        $guru->gender = $request->gender;
+        $guru->phone = $request->phone;
+        $guru->save();
+    
+        return response()->json(['success' => 'Data guru berhasil diperbarui']);
     }
 
     /**
@@ -65,5 +124,13 @@ class guruController extends Controller
     public function destroy(string $id)
     {
         //
+        $guru = Guru::find($id);
+
+        if ($guru) {
+            $guru->delete();
+            return response()->json(['success' => 'Data guru berhasil dihapus.']);
+        } else {
+            return response()->json(['error' => 'Data guru tidak ditemukan.'], 404);
+        }
     }
 }

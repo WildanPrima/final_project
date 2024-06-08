@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="text-center">Data Siswa</h3>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSiswaModal">
-                    Tambah Data Siswa
+                <h3 class="text-center">Data Guru</h3>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGuruModal">
+                    Tambah Data Guru
                 </button>
             </div>
             <div class="card-body">
@@ -16,7 +16,7 @@
                         <thead class="text-center">
                             <tr>
                                 <th>No</th>
-                                <th>NIS</th>
+                                <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
@@ -24,23 +24,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($siswa as $s)
+                            @foreach ($guru as $g)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $s->NIS }}</td>
-                                    <td>{{ $s->name }}</td>
-                                    <td>{{ $s->email }}</td>
-                                    <td class="text-wrap">{{ $s->address }}</td>                               
+                                    <td>{{ $g->NIP }}</td>
+                                    <td>{{ $g->name }}</td>
+                                    <td>{{ $g->email }}</td>
+                                    <td class="text-wrap">{{ $g->address }}</td>                               
                                     <td class="d-flex gap-1 justify-content-center">
-                                        <button class="btn btn-warning text-white btn-edit" data-id="{{ $s->id }}" data-toggle="modal" data-target="#editSiswaModal">Update</button>
-                                        <button class="btn btn-danger btn-delete" data-id="{{ $s->id }}">Delete</button>
+                                        <button class="btn btn-warning text-white btn-GuruEdit" data-id="{{ $g->id }}" data-toggle="modal" data-target="#editGuruModal">Update</button>
+                                        <button class="btn btn-danger btn-GuruDelete" data-id="{{ $g->id }}">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <div class="d-flex">
-                        {{ $siswa->links() }}
+                        {{ $guru->links() }}
                     </div>
                 </div>
             </div>
@@ -48,23 +48,23 @@
     </div>
 </div>
 
-{{-- modal tambah --}}
-<div class="modal fade" id="addSiswaModal" tabindex="-1" aria-labelledby="addSiswaModalLabel" aria-hidden="true">
+{{-- MODAL TAMBAH GURU --}}
+<div class="modal fade" id="addGuruModal" tabindex="-1" aria-labelledby="addGuruModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{ route('data-siswa.store') }}" method="POST">
+        <form action="{{ route('data-guru.store') }}" method="POST">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addSiswaModalLabel">Tambah Data Siswa</h5>
+                    <h5 class="modal-title" id="addGuruModalLabel">Tambah Data Guru</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="NIS">NIS</label>
-                        <input type="number" class="form-control @error('NIS') is-invalid @enderror" id="NIS" name="NIS" value="{{ old('NIS') }}">
-                        @error('NIS')
+                        <label for="NIP">NIP</label>
+                        <input type="number" class="form-control @error('NIP') is-invalid @enderror" id="NIP" name="NIP" value="{{ old('NIP') }}">
+                        @error('NIP')
                             <div class="invalid-feedback">
                             {{ $message }}
                             </div>
@@ -92,15 +92,6 @@
                         <label for="address">Alamat</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
                         @error('address')
-                            <div class="invalid-feedback">
-                            {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="agama">Agama</label>
-                        <input type="text" class="form-control @error('agama') is-invalid @enderror" id="agama" name="agama" value="{{ old('agama') }}">
-                        @error('agama')
                             <div class="invalid-feedback">
                             {{ $message }}
                             </div>
@@ -138,23 +129,23 @@
     </div>
 </div>
 
-{{-- modal ubah --}}
-<div class="modal fade" id="editSiswaModal" tabindex="-1" aria-labelledby="editSiswaModalLabel" aria-hidden="true">
+{{-- MODAL UBAH --}}
+<div class="modal fade" id="editGuruModal" tabindex="-1" aria-labelledby="editGuruModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="editSiswaForm" method="POST">
+        <form id="editGuruForm" method="POST">
             @csrf
             @method('PUT')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editSiswaModalLabel">Edit Data Siswa</h5>
+                    <h5 class="modal-title" id="editSiswaModalLabel">Edit Data Guru</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="editNIS">NIS</label>
-                        <input type="number" class="form-control" id="editNIS" name="NIS">
+                        <label for="editNIP">NIP</label>
+                        <input type="number" class="form-control" id="editNIP" name="NIP">
                     </div>
                     <div class="form-group">
                         <label for="editName">Nama</label>
@@ -167,10 +158,6 @@
                     <div class="form-group">
                         <label for="editAddress">Alamat</label>
                         <input type="text" class="form-control" id="editAddress" name="address">
-                    </div>
-                    <div class="form-group">
-                        <label for="editAgama">Agama</label>
-                        <input type="text" class="form-control" id="editAgama" name="agama">
                     </div>
                     <div class="form-group">
                         <label for="editGender">Gender</label>
@@ -193,5 +180,4 @@
         </form>
     </div>
 </div>
-
 @endsection

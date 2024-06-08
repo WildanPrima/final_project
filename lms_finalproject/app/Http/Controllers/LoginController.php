@@ -51,9 +51,11 @@ class LoginController extends Controller
             // $user_id = User::where('id', $user)->first();
 
             if ($user->hasRole('admin')) {
-                return view('admin.pages.data_siswa', ['user' => $user]);
+                return redirect()->route('admin');
+                // return view('admin.pages.dashboard', ['user' => $user]);
             } else {
-                return view('account-settings', ['user' => $user]);
+                return redirect()->route('account.settings');
+                // return view('account-settings', ['user' => $user]);
             }
             // return redirect()->route('data-siswa.index');
         } else {
@@ -70,6 +72,13 @@ class LoginController extends Controller
         // return back()->withErrors([
         //     'email' => __('validation.invalid_credentials'),
         // ]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 
     // /**

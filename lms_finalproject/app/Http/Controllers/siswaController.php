@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class siswaController extends Controller
 {
@@ -14,7 +16,9 @@ class siswaController extends Controller
     public function index()
     {
         //
-        
+        $user = Auth::user()->id;
+        $siswa = Siswa::latest()->paginate(5);
+        return view('admin.pages.data_siswa', compact('user', 'siswa'));
     }
 
     /**
@@ -31,6 +35,41 @@ class siswaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'NIS' => 'required|integer|unique:siswas',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:siswas',
+            'address' => 'required|string|max:255',
+            'gender' => 'required|in:male,female',
+            'agama' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('data-siswa.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $siswa = Siswa::create([
+            'user_id' => null,
+            'NIS' => $request->NIS,
+            'name' => $request->name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'agama' => $request->agama,
+            'phone' => $request->phone,
+            'pas_foto' => null,
+        ]);
+
+        if ($siswa) {
+            return redirect()->route('data-siswa.index')
+                ->with('success', 'Data siswa berhasil ditambahkan.');
+        } else {
+            return redirect()->route('data-siswa.index')
+                ->with('error', 'Failed to create user');
+        }
     }
 
     /**
@@ -47,6 +86,8 @@ class siswaController extends Controller
     public function edit(string $id)
     {
         //
+        $siswa = Siswa::find($id);
+        return response()->json($siswa);
     }
 
     /**
@@ -54,7 +95,30 @@ class siswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'NIS' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'address' => 'required|string|max:255',
+            'agama' => 'nullable|string|max:255',
+            'gender' => 'required|string|in:male,female',
+            'phone' => 'nullable|string|max:255',
+        ]);
+    
+        $siswa = Siswa::find($id);
+        $siswa->NIS = $request->NIS;
+        $siswa->name = $request->name;
+        $siswa->email = $request->email;
+        $siswa->address = $request->address;
+        $siswa->agama = $request->agama;
+        $siswa->gender = $request->gender;
+        $siswa->phone = $request->phone;
+        $siswa->save();
+    
+        return response()->json(['success' => 'Data siswa berhasil diperbarui']);
+
+        // Siswa::where('id', $request->id)
+        //     ->update($validator);
     }
 
     /**
@@ -63,5 +127,13 @@ class siswaController extends Controller
     public function destroy(string $id)
     {
         //
+        $siswa = Siswa::find($id);
+
+        if ($siswa) {
+            $siswa->delete();
+            return response()->json(['success' => 'Data siswa berhasil dihapus.']);
+        } else {
+            return response()->json(['error' => 'Data siswa tidak ditemukan.'], 404);
+        }
     }
 }
