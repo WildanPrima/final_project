@@ -11,14 +11,8 @@
     <header>
         <div class="container">
             <div class="logo">Brand</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Items</a></li>
-                    <li><a href="#">Informasi</a></li>
-                </ul>
-            </nav>
+            <>
+
             <div class="auth-buttons">
                 <button class="login">Login</button>
                 <button class="signup">Sign Up</button>
