@@ -114,7 +114,7 @@
                 data: form.serialize(),
                 success: function(response) {
                     // Menutup modal dan merefresh halaman
-                    $('#editSiswaModal').modal('hide');
+                    $('#editGuruModal').modal('hide');
                     alert(response.success);
                     location.reload();
                 },
@@ -149,4 +149,99 @@
             }
         });
     })
+</script>
+
+{{-- data mapel --}}
+<script>
+    // tambah data
+    $(document).ready(function() {
+        $('#addMapelForm').on('submit', function(e) {
+            e.preventDefault();
+    
+            var formData = new FormData(this);
+    
+            $.ajax({
+                url: '{{ route("data-mapel.store") }}',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $('#addMapelModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+
+        $('.btn-MapelEdit').on('click', function() {
+            var id = $(this).data('id');
+            // Mengisi form di modal edit
+            $.ajax({
+                url: '/data-mapel/' + id + '/edit',
+                method: 'GET',
+                success: function(data) {
+                    $('#editMapelId').val(data.id);
+                    $('#editGuruId').val(data.guru_id);
+                    $('#editMapelName').val(data.name);
+                    $('#editMapelImage').val(null); // Clear the file input
+                    $('#editMapelForm').attr('action', '/data-mapel/' + id);
+                }
+            });
+        });
+
+        // Menangani submit form edit
+        $('#editMapelForm').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    // Menutup modal dan merefresh halaman
+                    $('#editMapelModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    // Menangani error
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    
+        // Hapus data mapel
+        $('.btn-MapelDelete').on('click', function() {
+            var id = $(this).data('id');
+            var url = '/data-mapel/' + id;
+
+            if (confirm('Apakah Anda yakin ingin menghapus data mapel ini?')) {
+                $.ajax({
+                    url: url,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        alert(response.success);
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        alert('Terjadi kesalahan saat menghapus data.');
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
 </script>

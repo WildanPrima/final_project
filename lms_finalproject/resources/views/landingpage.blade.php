@@ -19,8 +19,8 @@
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <button class="login">Login</button>
-                <button class="signup">Sign Up</button>
+                <button class="login"><a href="{{ route('login') }}" style="color: black; text-decoration: none">Login</a></button>
+                <button class="signup"><a href="{{ route('register') }}" style="color: white; text-decoration: none">Sign Up</a></button>
             </div>
         </div>
     </header>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mapels', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('guru_id');
+            $table->text('image');
             $table->string('name');
             $table->foreign('guru_id')->references('id')->on('gurus');
             $table->timestamps();

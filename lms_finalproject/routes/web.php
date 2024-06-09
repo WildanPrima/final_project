@@ -10,6 +10,7 @@ use App\Http\Controllers\siswaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\dataMapelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::view('/', 'landingpage');
 Route::get('/admin', [adminController::class, 'index'])->name('admin');
 Route::resource('/data-siswa', siswaController::class);
 Route::resource('/data-guru', guruController::class);
+Route::resource('/data-mapel', dataMapelController::class);
 // Route::get('/admin', function () {
 //     $user = Auth::user()->id;
 //     return view('admin.pages.dashboard', ['user' => $user]);
