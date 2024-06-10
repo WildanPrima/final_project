@@ -20,22 +20,23 @@
         </div>
     </header>
     <div class="registration-container">
-        <!-- error message -->
-        @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-
-        <!-- success message -->
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         @endif
         <h3 class="text-center mb-4">Welcome back! 👋</h3>
         <p class="text-center">Please Sign Up to make your account.</p>
-        <p class="text-center text-secondary">Choose Your Role.</p>
-        <div class="my-3">
-            <button class="btn btn-warning"><a href="{{ route('register') }}" class="text-decoration-none text-white">Siswa</a></button>
-            <button class="btn btn-success"><a href="{{ route('register_guru') }}" class="text-decoration-none text-white">Guru</a></button>
-        </div>
         <form method="POST" action="{{ route('done_regis') }}">
             @csrf
             <input type="hidden" name="role" value="siswa">

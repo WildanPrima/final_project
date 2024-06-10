@@ -18,11 +18,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        if(Guru::where('NIP', $request->username)->first() || Siswa::where('NIS', $request->username)->first()) {
+        if(Siswa::where('NIS', $request->username)->first()) {
             $validator = Validator::make($request->all(), [
                 'username' => 'required|string|min:3|max:15',
                 'password' => 'required|string|min:3|max:8|confirmed',
-                'role' => 'required|in:admin,siswa'
+                // 'role' => 'required|in:admin,siswa'
             ]);
     
             if ($validator->fails()) {
@@ -36,14 +36,11 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
             ]);
     
-            $user->assignRole($request->role);
+            $user->assignRole('siswa');
     
             if ($user->hasRole('siswa')) {
                 Siswa::where('NIS', $request->username)
                     ->update(['user_id' => $user->id]);
-            } elseif ($user->hasRole('admin')) {
-                Guru::where('NIP', $request->username)
-                    ->update(['id_user' => $user->id]);
             }
     
             if ($user) {
@@ -55,7 +52,7 @@ class RegisterController extends Controller
             // return redirect()->route('login');
         } else {
             return redirect()->route('register')
-                ->with('error', 'Nis/Nip tidak ada'); 
+                ->with('error', 'NIS anda tidak ada'); 
         }
     
         // return redirect()->route('login');

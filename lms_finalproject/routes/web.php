@@ -10,7 +10,9 @@ use App\Http\Controllers\siswaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\angkatanController;
 use App\Http\Controllers\dataMapelController;
+use App\Http\Controllers\nilaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,8 @@ Route::get('/admin', [adminController::class, 'index'])->name('admin');
 Route::resource('/data-siswa', siswaController::class);
 Route::resource('/data-guru', guruController::class);
 Route::resource('/data-mapel', dataMapelController::class);
+Route::resource('/data-nilai', nilaiController::class);
+Route::resource('/data-angkatan', angkatanController::class);
 // Route::get('/admin', function () {
 //     $user = Auth::user()->id;
 //     return view('admin.pages.dashboard', ['user' => $user]);
@@ -44,7 +48,6 @@ Route::resource('/data-mapel', dataMapelController::class);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::get('/guru', [guruController::class, 'showRegistrationForm'])->name('register_guru');
 Route::post('/register', [RegisterController::class, 'register'])->name('done_regis');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

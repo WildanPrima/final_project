@@ -245,3 +245,187 @@
         });
     });
 </script>
+
+{{-- data angkatan --}}
+<script>
+    $(document).ready(function() {
+        // tambah data
+        $('#addAngkatanForm').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+
+            $.ajax({
+                url: '/data-angkatan',
+                method: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    $('#addAngkatanModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                    alert('Terjadi kesalahan, silakan coba lagi.');
+                }
+            });
+        });
+
+        // edit data
+        $('.btn-AngkatanEdit').on('click', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/data-angkatan/' + id + '/edit',
+                method: 'GET',
+                success: function(data) {
+                    $('#editClass').val(data.class);
+                    $('#editSemester').val(data.semester);
+                    $('#editAngkatanForm').attr('action', '/data-angkatan/' + id);
+                }
+            });
+        });
+
+        // Menangani submit form edit
+        $('#editAngkatanForm').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+    
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    // Menutup modal dan merefresh halaman
+                    $('#editAngkatanModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    // Menangani error
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        // delete data
+        $('.btn-AngkatanDelete').on('click', function() {
+            var id = $(this).data('id');
+            var url = '/data-angkatan/' + id;
+
+            if (confirm('Apakah Anda yakin ingin menghapus data angkatan ini?')) {
+                $.ajax({
+                    url: url,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        alert(response.success);
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        alert('Terjadi kesalahan saat menghapus data.');
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+{{-- data nilai --}}
+<script>
+    $(document).ready(function() {
+        // tambah data
+        $('#addNilaiForm').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+
+            $.ajax({
+                url: '/data-nilai',
+                method: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    $('#addNilaiModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                    // Menampilkan pesan error
+                    alert('Terjadi kesalahan, silakan coba lagi.');
+                }
+            });
+        });
+
+        // Saat tombol edit diklik
+        $('.btn-NilaiEdit').on('click', function() {
+            var id = $(this).data('id');
+            // Mengisi form di modal edit
+            $.ajax({
+                url: '/data-nilai/' + id + '/edit',
+                method: 'GET',
+                success: function(data) {
+                    $('#editSiswaId').val(data.siswa_id);
+                    $('#editMapelId').val(data.mapel_id);
+                    $('#editAngkatanId').val(data.angkatan_id);
+                    $('#editTugas1').val(data.tugas1);
+                    $('#editTugas2').val(data.tugas2);
+                    $('#editTugas3').val(data.tugas3);
+                    $('#editUjian').val(data.ujian);
+                    $('#editNilaiForm').attr('action', '/data-nilai/' + id);
+                }
+            });
+        });
+
+        // Menangani submit form edit
+        $('#editNilaiForm').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+    
+            $.ajax({
+                url: actionUrl,
+                method: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    // Menutup modal dan merefresh halaman
+                    $('#editNilaiModal').modal('hide');
+                    alert(response.success);
+                    location.reload();
+                },
+                error: function(xhr) {
+                    // Menangani error
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        // menangani delete data
+        $('.btn-NilaiDelete').on('click', function() {
+            var id = $(this).data('id');
+            var url = '/data-nilai/' + id;
+
+            if (confirm('Apakah Anda yakin ingin menghapus data nilai ini?')) {
+                $.ajax({
+                    url: url,
+                    method: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        alert(response.success);
+                        location.reload();
+                    },
+                    error: function(xhr) {
+                        alert('Terjadi kesalahan saat menghapus data.');
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+</script>
