@@ -16,7 +16,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="text-center">Data Angkatan</h3>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAngkatanModal">
-                        Tambah Data Angkatan
+                        <i class="fa-solid fa-plus fa-lg"></i> Tambah Data
                     </button>
                 </div>
                 <div class="card-body">
@@ -37,8 +37,8 @@
                                         <td>{{ $a->class }}</td>
                                         <td>{{ $a->semester }}</td>                              
                                         <td class="d-flex gap-1 justify-content-center">
-                                            <button class="btn btn-warning text-white btn-AngkatanEdit" data-id="{{ $a->id }}" data-toggle="modal" data-target="#editAngkatanModal">Update</button>
-                                            <button class="btn btn-danger btn-AngkatanDelete" data-id="{{ $a->id }}">Delete</button>
+                                            <button class="btn btn-warning text-white btn-AngkatanEdit" data-id="{{ $a->id }}" data-toggle="modal" data-target="#editAngkatanModal"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+                                            <button class="btn btn-danger btn-AngkatanDelete" data-id="{{ $a->id }}"><i class="fa-regular fa-trash-can fa-lg"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -16,7 +16,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="text-center">Data Guru</h3>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addGuruModal">
-                        Tambah Data Guru
+                        <i class="fa-solid fa-user-plus fa-lg"></i> Tambah Data
                     </button>
                 </div>
                 <div class="card-body">
@@ -41,8 +41,8 @@
                                         <td>{{ $g->email }}</td>
                                         <td class="text-wrap">{{ $g->address }}</td>                               
                                         <td class="d-flex gap-1 justify-content-center">
-                                            <button class="btn btn-warning text-white btn-GuruEdit" data-id="{{ $g->id }}" data-toggle="modal" data-target="#editGuruModal">Update</button>
-                                            <button class="btn btn-danger btn-GuruDelete" data-id="{{ $g->id }}">Delete</button>
+                                            <button class="btn btn-warning text-white btn-GuruEdit" data-id="{{ $g->id }}" data-toggle="modal" data-target="#editGuruModal"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+                                            <button class="btn btn-danger btn-GuruDelete" data-id="{{ $g->id }}"><i class="fa-regular fa-trash-can fa-lg"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach

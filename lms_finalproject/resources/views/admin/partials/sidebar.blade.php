@@ -219,7 +219,7 @@
           <form action="{{ route('logout') }}" method="POST">
             @csrf
             <div class="text-center my-3">
-                <button type="submit" class="btn btn-danger"><a href="{{ route('logout') }}" class="text-decoration-none text-dark" onclick="return confirm('Apakah Anda Yakin Ingin Logout?');">Logout</a></button>
+                <button type="submit" class="btn btn-danger"><a href="{{ route('logout') }}" class="text-decoration-none text-dark" onclick="return confirm('Apakah Anda Yakin Ingin Logout?');"> <i class="fa-regular fa-circle-left fa-lg"></i> Logout</a></button>
             </div>
           </form>
         </li>

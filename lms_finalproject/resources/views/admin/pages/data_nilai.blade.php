@@ -16,7 +16,7 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="text-center">Data Nilai</h3>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNilaiModal">
-                        Tambah Data Nilai
+                        <i class="fa-solid fa-plus fa-lg"></i> Tambah Data
                     </button>
                 </div>
                 <div class="card-body">
@@ -49,8 +49,8 @@
                                         <td class="text-wrap">{{ $n->angkatan->class }}</td>
                                         <td class="text-wrap">{{ $n->angkatan->semester }}</td>
                                         <td class="d-flex gap-1 justify-content-center">
-                                            <button class="btn btn-warning text-white btn-NilaiEdit" data-id="{{ $n->id }}" data-toggle="modal" data-target="#editNilaiModal">Update</button>
-                                            <button class="btn btn-danger btn-NilaiDelete" data-id="{{ $n->id }}">Delete</button>
+                                            <button class="btn btn-warning text-white btn-NilaiEdit" data-id="{{ $n->id }}" data-toggle="modal" data-target="#editNilaiModal"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+                                            <button class="btn btn-danger btn-NilaiDelete" data-id="{{ $n->id }}"><i class="fa-regular fa-trash-can fa-lg"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
