@@ -21,6 +21,22 @@ class dataMapelController extends Controller
         return view('admin.pages.data_mapel', compact('user', 'mapel', 'guru'));
     }
 
+    public function searching(Request $request)
+    {
+        // fitur search
+        $guru = Guru::all();
+        $query = Mapel::orderBy('created_at', 'desc');
+
+        if (request()->has('search')) {
+            # code...
+            $search = $request->get('search');
+            $query->where('name', 'like', '%' . request()->get('search') . '%');
+        }
+
+        $mapel = $query->paginate(5);
+        return view('admin.pages.data_mapel', compact('mapel', 'guru'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

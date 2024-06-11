@@ -36,6 +36,11 @@ Route::resource('/data-guru', guruController::class);
 Route::resource('/data-mapel', dataMapelController::class);
 Route::resource('/data-nilai', nilaiController::class);
 Route::resource('/data-angkatan', angkatanController::class);
+Route::get('/search-siswa', [siswaController::class, 'searching'])->name('searching_siswa');
+Route::get('/search-guru', [guruController::class, 'searching'])->name('searching_guru');
+Route::get('/search-mapel', [dataMapelController::class, 'searching'])->name('searching_mapel');
+Route::get('/search-angkatan', [angkatanController::class, 'searching'])->name('searching_angkatan');
+Route::get('/search-nilai', [nilaiController::class, 'searching'])->name('searching_nilai');
 // Route::get('/admin', function () {
 //     $user = Auth::user()->id;
 //     return view('admin.pages.dashboard', ['user' => $user]);

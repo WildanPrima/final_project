@@ -1,51 +1,62 @@
 @extends('admin.main')
 
 @section('content')
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="text-center">Data Siswa</h3>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSiswaModal">
-                    Tambah Data Siswa
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead class="text-center">
-                            <tr>
-                                <th>No</th>
-                                <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Alamat</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($siswa as $s)
+<div class="container my-3">
+    <div class="row">
+        <div class="w-25 mb-3">
+            <form action="{{ route('searching_siswa') }}" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search">
+                </div>
+            </form>
+        </div>
+        <div class="justify-content-center">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="text-center">Data Siswa</h3>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSiswaModal">
+                        Tambah Data Siswa
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="text-center">
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $s->NIS }}</td>
-                                    <td>{{ $s->name }}</td>
-                                    <td>{{ $s->email }}</td>
-                                    <td class="text-wrap">{{ $s->address }}</td>                               
-                                    <td class="d-flex gap-1 justify-content-center">
-                                        <button class="btn btn-warning text-white btn-edit" data-id="{{ $s->id }}" data-toggle="modal" data-target="#editSiswaModal">Update</button>
-                                        <button class="btn btn-danger btn-delete" data-id="{{ $s->id }}">Delete</button>
-                                    </td>
+                                    <th>No</th>
+                                    <th>NIS</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Alamat</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="d-flex">
-                        {{ $siswa->links() }}
+                            </thead>
+                            <tbody>
+                                @foreach ($siswa as $s)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $s->NIS }}</td>
+                                        <td>{{ $s->name }}</td>
+                                        <td>{{ $s->email }}</td>
+                                        <td class="text-wrap">{{ $s->address }}</td>                               
+                                        <td class="d-flex gap-1 justify-content-center">
+                                            <button class="btn btn-warning text-white btn-edit" data-id="{{ $s->id }}" data-toggle="modal" data-target="#editSiswaModal">Update</button>
+                                            <button class="btn btn-danger btn-delete" data-id="{{ $s->id }}">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="d-flex">
+                            {{ $siswa->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('admin.partials.footer')
 </div>
 
 {{-- modal tambah --}}

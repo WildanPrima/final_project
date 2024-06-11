@@ -20,9 +20,19 @@ class guruController extends Controller
         return view('admin.pages.data_guru', compact('user', 'guru'));
     }
 
-    public function showRegistrationForm()
+    public function searching(Request $request)
     {
-        return view('admin.pages.register');
+        // fitur search
+        $query = Guru::orderBy('created_at', 'desc');
+
+        if (request()->has('search')) {
+            # code...
+            $search = $request->get('search');
+            $query->where('name', 'like', '%' . request()->get('search') . '%');
+        }
+
+        $guru = $query->paginate(5);
+        return view('admin.pages.data_guru', compact('guru'));
     }
 
     /**
@@ -125,12 +135,17 @@ class guruController extends Controller
     {
         //
         $guru = Guru::find($id);
+        $user = Auth::user();
 
-        if ($guru) {
-            $guru->delete();
-            return response()->json(['success' => 'Data guru berhasil dihapus.']);
-        } else {
+        if (!$guru) {
             return response()->json(['error' => 'Data guru tidak ditemukan.'], 404);
         }
+
+        if ($guru->id_user == $user->id) {
+            return response()->json(['error' => 'Anda tidak bisa menghapus data anda sendiri!'], 403);
+        }
+
+        $guru->delete();
+        return response()->json(['success' => 'Data guru berhasil dihapus.']);
     }
 }

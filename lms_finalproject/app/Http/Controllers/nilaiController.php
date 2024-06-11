@@ -28,6 +28,27 @@ class nilaiController extends Controller
         return view('admin.pages.data_nilai', compact('nilai', 'angkatan', 'siswa', 'mapel'));
     }
 
+    public function searching(Request $request)
+    {
+        // fitur search
+        $angkatan = Angkatan::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $query = Nilai::with(['siswa', 'mapel', 'angkatan'])->orderBy('created_at', 'desc');
+
+        if (request()->has('search')) {
+            # code...
+            $search = $request->get('search');
+            $query->whereHas('siswa', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            });
+        }
+
+        $nilai = $query->paginate(6);
+
+        return view('admin.pages.data_nilai', compact('nilai', 'angkatan', 'mapel', 'siswa'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

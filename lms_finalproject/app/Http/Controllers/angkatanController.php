@@ -20,6 +20,21 @@ class angkatanController extends Controller
         return view('admin.pages.data_angkatan', compact('user', 'angkatan'));
     }
 
+    public function searching(Request $request)
+    {
+        // fitur search
+        $query = Angkatan::orderBy('created_at', 'desc');
+
+        if (request()->has('search')) {
+            # code...
+            $search = $request->get('search');
+            $query->where('class', 'like', '%' . request()->get('search') . '%');
+        }
+
+        $angkatan = $query->paginate(5);
+        return view('admin.pages.data_angkatan', compact('angkatan'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

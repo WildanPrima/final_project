@@ -1,59 +1,70 @@
 @extends('admin.main')
 
 @section('content')
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h3 class="text-center">Data Nilai</h3>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNilaiModal">
-                    Tambah Data Nilai
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead class="text-center">
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Siswa</th>
-                                <th>Nama Mapel</th>
-                                <th>Tugas 1</th>
-                                <th>Tugas 2</th>
-                                <th>Tugas 3</th>
-                                <th>Ujian</th>
-                                <th>Kelas</th>
-                                <th>Semester</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($nilai as $n)
-                                <tr class="text-center">
-                                    <td class="text-wrap">{{ $loop->iteration }}</td>
-                                    <td class="text-wrap">{{ $n->siswa->name }}</td>
-                                    <td class="text-wrap">{{ $n->mapel->name }}</td>
-                                    <td class="text-wrap">{{ $n->tugas1 }}</td>
-                                    <td class="text-wrap">{{ $n->tugas2 }}</td>
-                                    <td class="text-wrap">{{ $n->tugas3 }}</td>
-                                    <td class="text-wrap">{{ $n->ujian }}</td>
-                                    <td class="text-wrap">{{ $n->angkatan->class }}</td>
-                                    <td class="text-wrap">{{ $n->angkatan->semester }}</td>
-                                    <td class="d-flex gap-1 justify-content-center">
-                                        <button class="btn btn-warning text-white btn-NilaiEdit" data-id="{{ $n->id }}" data-toggle="modal" data-target="#editNilaiModal">Update</button>
-                                        <button class="btn btn-danger btn-NilaiDelete" data-id="{{ $n->id }}">Delete</button>
-                                    </td>
+<div class="container my-3">
+    <div class="row">
+        <div class="w-25 mb-3">
+            <form action="{{ route('searching_nilai') }}" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search">
+                </div>
+            </form>
+        </div>
+        <div class="justify-content-center">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="text-center">Data Nilai</h3>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNilaiModal">
+                        Tambah Data Nilai
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Nama Mapel</th>
+                                    <th>Tugas 1</th>
+                                    <th>Tugas 2</th>
+                                    <th>Tugas 3</th>
+                                    <th>Ujian</th>
+                                    <th>Kelas</th>
+                                    <th>Semester</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="d-flex">
-                        {{ $nilai->links() }}
+                            </thead>
+                            <tbody>
+                                @foreach ($nilai as $n)
+                                    <tr class="text-center">
+                                        <td class="text-wrap">{{ $loop->iteration }}</td>
+                                        <td class="text-wrap">{{ $n->siswa->name }}</td>
+                                        <td class="text-wrap">{{ $n->mapel->name }}</td>
+                                        <td class="text-wrap">{{ $n->tugas1 }}</td>
+                                        <td class="text-wrap">{{ $n->tugas2 }}</td>
+                                        <td class="text-wrap">{{ $n->tugas3 }}</td>
+                                        <td class="text-wrap">{{ $n->ujian }}</td>
+                                        <td class="text-wrap">{{ $n->angkatan->class }}</td>
+                                        <td class="text-wrap">{{ $n->angkatan->semester }}</td>
+                                        <td class="d-flex gap-1 justify-content-center">
+                                            <button class="btn btn-warning text-white btn-NilaiEdit" data-id="{{ $n->id }}" data-toggle="modal" data-target="#editNilaiModal">Update</button>
+                                            <button class="btn btn-danger btn-NilaiDelete" data-id="{{ $n->id }}">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="d-flex">
+                            {{ $nilai->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('admin.partials.footer')
 </div>
 
 {{-- modal tambah --}}

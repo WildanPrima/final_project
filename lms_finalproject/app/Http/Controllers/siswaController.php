@@ -21,6 +21,21 @@ class siswaController extends Controller
         return view('admin.pages.data_siswa', compact('user', 'siswa'));
     }
 
+    public function searching(Request $request)
+    {
+        // fitur search
+        $query = Siswa::orderBy('created_at', 'desc');
+
+        if (request()->has('search')) {
+            # code...
+            $search = $request->get('search');
+            $query->where('name', 'like', '%' . request()->get('search') . '%');
+        }
+
+        $siswa = $query->paginate(5);
+        return view('admin.pages.data_siswa', compact('siswa'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -138,11 +138,18 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        alert(response.success);
-                        location.reload();
+                        if (response.success) {
+                            alert(response.success);
+                            location.reload();
+                        }
                     },
                     error: function(xhr) {
-                        alert('Terjadi kesalahan saat menghapus data.');
+                        var response = xhr.responseJSON;
+                        if (response && response.error) {
+                            alert(response.error);
+                        } else {
+                            alert('Terjadi kesalahan saat menghapus data.');
+                        }
                         console.log(xhr.responseText);
                     }
                 });
