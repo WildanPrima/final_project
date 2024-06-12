@@ -53,8 +53,8 @@
                     <ul>
                         <li><a href="#" class="text-gray-400">Home</a></li>
                         <li><a href="#" class="text-gray-400">Mapel</a></li>
-                        <li><a href="#" class="text-gray-400">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400">Informasi</a></li>
+                        <li><a href="#" class="text-gray-400">Rapor</a></li>
+
                     </ul>
                 </div>
                 <div class="footer-column">
