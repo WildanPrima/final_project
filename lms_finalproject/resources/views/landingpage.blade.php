@@ -60,8 +60,8 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Informasi</a></li>
+                    <li><a href="#">Rapor</a></li>
+
                 </ul>
             </div>
             <div class="footer-column">
