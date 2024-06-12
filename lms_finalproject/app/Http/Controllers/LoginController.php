@@ -54,7 +54,7 @@ class LoginController extends Controller
                 return redirect()->route('admin');
                 // return view('admin.pages.dashboard', ['user' => $user]);
             } else {
-                return redirect()->route('account.settings');
+                return redirect('/');
                 // return view('account-settings', ['user' => $user]);
             }
             // return redirect()->route('data-siswa.index');
