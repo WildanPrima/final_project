@@ -17,6 +17,6 @@ class RaporController extends Controller
             ['subject' => 'Ilmu Pengetahuan Sosial', 'task1' => null, 'task2' => null, 'task3' => null, 'exam' => null]
         ];
 
-        return view('rapor.index', compact('rapor'));
+        return view('siswa.pages.rapor', compact('rapor'));
     } //
 }

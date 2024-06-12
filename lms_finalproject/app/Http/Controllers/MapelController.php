@@ -42,7 +42,7 @@ class MapelController extends Controller
 
         ];
 
-        return view('mapel.index', compact('mapels'));
+        return view('siswa.pages.mapel', compact('mapels'));
     }
 
 }

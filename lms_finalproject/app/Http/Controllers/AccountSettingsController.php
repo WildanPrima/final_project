@@ -8,6 +8,6 @@ class AccountSettingsController extends Controller
 {
     public function index()
     {
-        return view('account-settings');
+        return view('siswa.pages.account-settings');
     }
 }

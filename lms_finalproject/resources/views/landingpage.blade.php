@@ -4,27 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand LMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Brand</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Items</a></li>
-                    <li><a href="#">Informasi</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <button class="login"><a href="{{ route('login') }}" style="color: black; text-decoration: none">Login</a></button>
-                <button class="signup"><a href="{{ route('register') }}" style="color: white; text-decoration: none">Sign Up</a></button>
-            </div>
-        </div>
-    </header>
-
+    @include('siswa.partials.navbar')
     <section class="hero">
         <div class="container">
             <div class="hero-text">

@@ -4,24 +4,11 @@
     <title>Rapor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/rapor.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Brand</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Items</a></li>
-                    <li><a href="#">Informasi</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <img class="profile-img" src="{{ asset('images/profile-picture.png') }}" alt="Profile Picture">
-            </div>
-        </div>
-    </header>
+    @include('siswa.partials.navbar')
+    <section class="container">
         <div class="content">
             <div class="row">
                 <div class="col-md-3">
@@ -69,6 +56,7 @@
                 </table>
             </div>
         </div>
+    </section>
 
     <footer class="bg-black text-white py-8">
         <div class="container mx-auto px-6">

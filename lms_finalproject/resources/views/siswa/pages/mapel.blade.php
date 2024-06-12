@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/mapel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Brand</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Items</a></li>
-                    <li><a href="#">Informasi</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <img class="profile-img" src="{{ asset('images/profile-picture.png') }}" alt="Profile Picture">
-            </div>
-        </div>
-    </header>
-
+    @include('siswa.partials.navbar')
     <main class="main-container">
         <div class="container">
             <h1>Selamat Datang Di Kelas 12! 👋</h1>

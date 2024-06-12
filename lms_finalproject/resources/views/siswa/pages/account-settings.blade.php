@@ -6,24 +6,10 @@
     <title>Pengaturan Akun</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/account-settings.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Brand</div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Items</a></li>
-                    <li><a href="#">Informasi</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <img class="profile-img" src="{{ asset('images/profile-picture.png') }}" alt="Profile Picture">
-            </div>
-        </div>
-    </header>
+    @include('siswa.partials.navbar')
     <div class="container mt-5">
         <div class="account-settings">
             <h2 class="text-center">Pengaturan Akun</h2>
