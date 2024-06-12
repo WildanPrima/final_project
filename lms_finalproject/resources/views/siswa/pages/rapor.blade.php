@@ -58,39 +58,32 @@
         </div>
     </section>
 
-    <footer class="bg-black text-white py-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="footer-column">
-                    <h3 class="font-bold mb-4">Company</h3>
-                    <ul>
-                        <li><a href="#" class="text-gray-400">About Us</a></li>
-                        <li><a href="#" class="text-gray-400">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="font-bold mb-4">Contact</h3>
-                    <p class="text-gray-400">Brand@gmail.com</p>
-                    <p class="text-gray-400">+62812345678</p>
-                    <p class="text-gray-400">@brand</p>
-                </div>
-                <div class="footer-column">
-                    <h3 class="font-bold mb-4">Navigation</h3>
-                    <ul>
-                        <li><a href="#" class="text-gray-400">Home</a></li>
-                        <li><a href="#" class="text-gray-400">Mapel</a></li>
-                        <li><a href="#" class="text-gray-400">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400">Informasi</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="font-bold mb-4">Nama Brand</h3>
-                    <p>Brand adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan [Nama Brand] menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; Brand</p>
-            </div>
+    <footer>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="logo">Brand</h1>
+        </div>
+        <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Mapel</a></li>
+                <li><a href="#">Rapor</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact-info">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="mailto:Brand@gmail.com">Brand@gmail.com</a></li>
+                <li><a href="tel:+62812345678">+62812345678</a></li>
+                <li><a href="#">@brand</a></li>
+            </ul>
         </div>
     </footer>
 </body>

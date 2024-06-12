@@ -9,6 +9,7 @@
 </head>
 <body>
     @include('siswa.partials.navbar')
+
     <section class="hero">
         <div class="container">
             <div class="hero-text">
@@ -69,7 +70,5 @@
             </ul>
         </div>
     </footer>
-
-
 </body>
 </html>

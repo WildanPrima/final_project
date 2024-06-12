@@ -10,7 +10,6 @@ body {
     font-weight: bold;
 }
 
-
 .auth-buttons button {
     margin-left: 20px;
     padding: 10px 20px;
@@ -106,8 +105,6 @@ section.feature {
     font-weight: bold;
 }
 
-
-/* Footer */
 footer {
     background-color: #000;
     color: #fff;
@@ -115,40 +112,38 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
+}
 
-  }
-
-  footer .footer-section {
+footer .footer-section {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-  }
+    margin-bottom: 120px;
+}
 
-  footer .footer-section h4 {
+footer .footer-section h4 {
     margin-bottom: 10px;
-  }
+}
 
-  footer a {
+footer a {
     color: #5c67f2;
     text-decoration: none;
     margin-bottom: 5px;
-  }
+}
 
-  footer .contact-info {
+footer .contact-info {
     display: flex;
     flex-direction: column;
-  }
+}
 
-
-
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     footer {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     footer .footer-section {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
     }
-  }
-
+}
