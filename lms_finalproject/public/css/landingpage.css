@@ -64,11 +64,11 @@ section.hero {
 .hero-image {
     flex: 1;
     text-align: right;
-    padding-left: 20px;
+    padding-left: 10px; /* Menyesuaikan padding kiri */
 }
 
 .hero-image img {
-    width: 80%;
+    width: 30%;
 }
 
 section.feature {
@@ -76,18 +76,18 @@ section.feature {
 }
 
 .feature-item {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .feature-item img {
-    width: 100%;
+    width: 30%;
     height: auto;
     display: block;
 }
 
 .feature-item h2 {
     font-size: 24px;
-    margin: 20px 0;
+    margin: 10px 0; /* Mengurangi margin atas dan bawah */
 }
 
 .feature-item p {
