@@ -11,6 +11,7 @@
 </head>
 <body>
     @include('siswa.partials.navbar')
+
     <section class="hero">
         <div class="container">
             <div class="hero-text">
@@ -41,38 +42,34 @@
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-column">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact</h3>
-                <ul>
-                    <li>Email: Brand@gmail.com</li>
-                    <li>Phone: +62812345678</li>
-                    <li>Twitter: @brand</li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Mapel</a></li>
-                    <li><a href="#">Rapor</a></li>
-
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Nama Brand</h3>
-                <p>Brand adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan [Nama Brand] menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
-            </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="logo">Brand</h1>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; Brand</p>
+
+        <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Mapel</a></li>
+                <li><a href="#">Rapor</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section contact-info">
+            <h4>Contact</h4>
+            <ul>
+                <li><a href="mailto:Brand@gmail.com">Brand@gmail.com</a></li>
+                <li><a href="tel:+62812345678">+62812345678</a></li>
+                <li><a href="#">@brand</a></li>
+            </ul>
         </div>
     </footer>
 
