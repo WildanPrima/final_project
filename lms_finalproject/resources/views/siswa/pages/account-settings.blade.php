@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengaturan Akun</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
+
     <link rel="stylesheet" href="{{ asset('css/account-settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
@@ -12,61 +14,60 @@
     @include('siswa.partials.navbar')
     <div class="container mt-5">
         <div class="account-settings">
-            <h2 class="text-center">Pengaturan Akun</h2>
-            <form>
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <h2 class="text-center mb-4">Pengaturan Akun</h2>
+            <form action="{{ route('siswa_update') }}"  method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row mb-3">
                     <div class="col-md-4 profile-photo">
-                        <img class="profile-img" src="{{ asset('images/profile-picture.png') }}" alt="Profile Picture">
-                        <input type="file" class="form-control mt-2" accept="image/*">
-                        <small class="form-text text-muted">Ukuran gambar harus di bawah 1MB dan rasio gambar harus 1:1</small>
+                        <img class="profile-img rounded-circle" src="{{ $siswa->pas_foto ? asset($siswa->pas_foto) : asset('images/profile-picture.png') }}" alt="Profile Picture" id="profileImg" name="pas_foto" style="width:250px; height:250px; border-radius: 50%; object-fit: cover; cursor: pointer;">
+                        <input type="file" class="form-control mt-2" name="pas_foto" id="profileImageUpload" accept="image/*" style="display: none;">
+                        <small class="form-text text-muted">Jika anda ingin ganti foto profile, ukuran gambar harus di bawah 2MB </small>
                     </div>
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="full-name">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="full-name" placeholder="Nama Lengkap">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $siswa->name }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="nik">NIK</label>
-                                <input type="text" class="form-control" id="nik" placeholder="NIK">
+                                <label for="NIS">NIS</label>
+                                <input type="text" class="form-control" id="NIS" name="NIS" value="{{ $siswa->NIS }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
+                                <input type="email" class="form-control" id="email" name="email" value="{{ $siswa->email }}">
+                                <small class="form-text text-muted">Ubah, jika anda ingin mengubah</small>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone">No Telp</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Masukkan No Telepon">
+                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $siswa->phone }}">
+                                <small class="form-text text-muted">Ubah, jika anda ingin mengubah</small>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="gender">Jenis Kelamin</label>
-                                <select class="form-control" id="gender">
-                                    <option value="">Pilih</option>
-                                    <option value="male">Laki-laki</option>
-                                    <option value="female">Perempuan</option>
+                                <select class="form-control" id="gender" name="gender" disabled>
+                                    <option value="male" {{ ($siswa->gender) == 'male' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="female" {{ ($siswa->gender) == 'female' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
-                                <small id="gender-help" class="form-text text-muted">Pilih jenis kelamin Anda.</small>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="religion">Agama</label>
-                                <select class="form-control" id="religion">
-                                    <option value="">Pilih</option>
-                                    <option value="islam">Islam</option>
-                                    <option value="christian">Kristen</option>
-                                    <option value="catholic">Katolik</option>
-                                    <option value="hindu">Hindu</option>
-                                    <option value="buddha">Buddha</option>
-                                    <option value="confucian">Konghucu</option>
-                                </select>
-                                <small id="religion-help" class="form-text text-muted">Pilih agama Anda.</small>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="graduate">Lulusan</label>
-                                <input type="text" class="form-control" id="graduate" placeholder="Masukkan Lulusan SMP">
+                                <label for="agama">Agama</label>
+                                <input type="text" class="form-control" id="agama" name="agama" value="{{ $siswa->agama }}" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="address">Alamat</label>
-                                <input type="text" class="form-control" id="address" placeholder="Masukkan Alamat Lengkap">
+                                <textarea name="address" id="address" cols="30" rows="2" readonly>{{ $siswa->address }}</textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mt-4">Simpan</button>
@@ -76,7 +77,23 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#profileImg').click(function() {
+                $('#profileImageUpload').click();
+            });
+
+            $('#profileImageUpload').change(function(event) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#profileImg').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            });
+        });
+    </script>
 </body>
 </html>

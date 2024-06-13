@@ -60,5 +60,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
 
 Route::get('/account-settings', [AccountSettingsController::class, 'index'])->name('account.settings');
+Route::post('/update-account', [AccountSettingsController::class, 'update'])->name('siswa_update');
 
 Route::get('/rapor', [RaporController::class, 'index'])->name('rapor.index');

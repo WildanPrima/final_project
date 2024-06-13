@@ -20,7 +20,7 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="profile-img rounded-circle" src="{{ asset('images/profile-picture.png') }}" alt="Profile Picture" width="30%">
+                                <img class="profile-img rounded-circle" src="{{ Auth::user()->siswa->pas_foto ? asset(Auth::user()->siswa->pas_foto) : asset('images/profile-picture.png') }}" alt="Profile Picture" id="profileImg" name="pas_foto" style="width:50px; height:50px; border-radius: 50%; object-fit: cover; cursor: pointer;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li>
