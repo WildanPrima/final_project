@@ -5,6 +5,7 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/rapor.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
@@ -12,49 +13,63 @@
     @include('siswa.partials.navbar')
     <section class="container">
         <div class="content">
-            <h2 class="mb-3">Halo {{ $siswa->name }}, berikut adalah nilai kamu</h2>
+            <p class="mb-4 fs-4">Halo <strong>{{ $siswa->name }}</strong>, berikut adalah nilai kamu</p>
             <div class="row">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Search in your rapor...">
-                </div>
-                <div class="col-md-3">
-                    <select class="form-control">
-                        <option>Latest</option>
-                        <option>Oldest</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-control">
-                        <option>All Category</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
-                    </select>
-                </div>
-                <div class="col-md-3 text-end">
-                    <button class="btn btn-primary">Download</button>
+                    <form action="{{ route('searching_rapor') }}" method="GET">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Cari Kelas..." name="search" value="{{ request('search') }}">
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="table-container">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Mata Pelajaran</th>
-                            <th>Tugas 1</th>
-                            <th>Tugas 2</th>
-                            <th>Tugas 3</th>
-                            <th>Ujian</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr> 
-                    </tbody>
-                </table>
+            @forelse ($angkatanNilais as $angkatanNilai)
+                <div class="d-flex justify-content-between align-content-center">
+                    <p class="mt-4 fs-5">Kelas {{ $angkatanNilai['angkatan']->class }} - <strong>Semester {{ $angkatanNilai['angkatan']->semester }}</strong></p>
+                    <div class="text-end">
+                        <button class="btn btn-primary">Download</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Mata Pelajaran</th>
+                                <th>Tugas 1</th>
+                                <th>Tugas 2</th>
+                                <th>Tugas 3</th>
+                                <th>Ujian</th>
+                                <th>Rata-rata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($angkatanNilai['nilais'] as $nilai)
+                                <tr>
+                                    <td>{{ $nilai->mapel->name }}</td>
+                                    <td class="text-end">{{ $nilai->tugas1 }}</td>
+                                    <td class="text-end">{{ $nilai->tugas2 }}</td>
+                                    <td class="text-end">{{ $nilai->tugas3 }}</td>
+                                    <td class="text-end">{{ $nilai->ujian }}</td>
+                                    <td class="text-end">{{ number_format($nilai->average, 2) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4">
+                    <strong>Nilai Rata-rata Keseluruhan: {{ number_format($angkatanNilai['overallAverage'], 2) }}</strong>
+                    <h4>Status: 
+                        <button class="btn {{ $angkatanNilai['status'] == 'Lulus' ? 'btn-success' : 'btn-danger' }}">
+                            {{ $angkatanNilai['status'] }}
+                        </button>
+                    </h4>
+                </div>
+            @empty
+                <strong class="text-secondary text-center mt-4">Belum Ada Nilai yang Diupload</strong>
+            @endforelse
+            <div class="d-flex">
+                {{ $angkatans->links() }}
             </div>
         </div>
     </section>

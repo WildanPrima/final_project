@@ -29,7 +29,7 @@ use App\Http\Controllers\nilaiController;
 Route::view('/', 'landingpage');
 
 
-// admin
+// Role admin
 Route::get('/admin', [adminController::class, 'index'])->name('admin');
 Route::resource('/data-siswa', siswaController::class);
 Route::resource('/data-guru', guruController::class);
@@ -41,13 +41,6 @@ Route::get('/search-guru', [guruController::class, 'searching'])->name('searchin
 Route::get('/search-mapel', [dataMapelController::class, 'searching'])->name('searching_mapel');
 Route::get('/search-angkatan', [angkatanController::class, 'searching'])->name('searching_angkatan');
 Route::get('/search-nilai', [nilaiController::class, 'searching'])->name('searching_nilai');
-// Route::get('/admin', function () {
-//     $user = Auth::user()->id;
-//     return view('admin.pages.dashboard', ['user' => $user]);
-// });
-
-
-
 
 // Authentication Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -56,10 +49,9 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register'])->name('done_regis');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Mapel Routes
+// Role siswa
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
-
 Route::get('/account-settings', [AccountSettingsController::class, 'index'])->name('account.settings');
 Route::post('/update-account', [AccountSettingsController::class, 'update'])->name('siswa_update');
-
 Route::get('/rapor', [RaporController::class, 'index'])->name('rapor.index');
+Route::get('/rapor-search', [RaporController::class, 'searching'])->name('searching_rapor');
