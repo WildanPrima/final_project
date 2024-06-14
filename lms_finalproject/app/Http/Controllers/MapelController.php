@@ -2,47 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 
 class MapelController extends Controller
 {
     public function index()
     {
-        $mapels = [
-            [
-                'name' => 'Bahasa Indonesia',
-                'description' => 'when an unknown printer took a galley of type and scrambled',
-                'students' => 32,
-                'image' => 'path/to/image1.jpg'
-            ],
-            [
-                'name' => 'Matematika',
-                'description' => 'when an unknown printer took a galley of type and scrambled',
-                'students' => 32,
-                'image' => 'path/to/image2.jpg'
-            ],
-            [
-                'name' => 'Bahasa Inggris',
-                'description' => 'when an unknown printer took a galley of type and scrambled',
-                'students' => 32,
-                'image' => 'path/to/image2.jpg'
-            ],
-            [
-                'name' => 'Pendidikan Kewarganegaraan',
-                'description' => 'when an unknown printer took a galley of type and scrambled',
-                'students' => 32,
-                'image' => 'path/to/image2.jpg'
-            ],
-            [
-                'name' => 'Ilmu Pengetahuan Sosial',
-                'description' => 'when an unknown printer took a galley of type and scrambled',
-                'students' => 32,
-                'image' => 'path/to/image2.jpg'
-            ],
+        $mapels = Mapel::all();
+        $guru = Guru::all();
 
-        ];
-
-        return view('siswa.pages.mapel', compact('mapels'));
+        return view('siswa.pages.mapel', compact('mapels', 'guru'));
     }
 
 }

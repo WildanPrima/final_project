@@ -194,6 +194,7 @@
                     $('#editMapelId').val(data.id);
                     $('#editGuruId').val(data.guru_id);
                     $('#editMapelName').val(data.name);
+                    $('#editDesc').val(data.desc);
                     $('#editMapelImage').val(null); // Clear the file input
                     $('#editMapelForm').attr('action', '/data-mapel/' + id);
                 }

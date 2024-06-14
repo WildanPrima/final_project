@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RaporController extends Controller
 {
     public function index()
     {
-        // Data dummy untuk tabel
-        $rapor = [
-            ['subject' => 'Bahasa Indonesia', 'task1' => 80, 'task2' => 70, 'task3' => 60, 'exam' => 85],
-            ['subject' => 'Matematika', 'task1' => null, 'task2' => null, 'task3' => null, 'exam' => null],
-            ['subject' => 'Bahasa Inggris ', 'task1' => null, 'task2' => null, 'task3' => null, 'exam' => null],
-            ['subject' => 'Pendidikan Kewarganegaraan', 'task1' => null, 'task2' => null, 'task3' => null, 'exam' => null],
-            ['subject' => 'Ilmu Pengetahuan Sosial', 'task1' => null, 'task2' => null, 'task3' => null, 'exam' => null]
-        ];
+        //
+        $user = Auth::user()->id;
+        $siswa = Siswa::where('user_id', $user)->first();
 
-        return view('siswa.pages.rapor', compact('rapor'));
-    } //
+        return view('siswa.pages.rapor', compact('siswa'));
+    }
 }

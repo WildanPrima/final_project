@@ -92,6 +92,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="desc">Deskripsi Mapel</label>
+                        <input type="text" class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc">
+                        @error('desc')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="image">Gambar</label>
                         <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
                         @error('image')
@@ -137,6 +146,10 @@
                     <div class="form-group">
                         <label for="editMapelName">Nama Mapel</label>
                         <input type="text" class="form-control" id="editMapelName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDesc">Deskripsi Mapel</label>
+                        <input type="text" class="form-control" id="editDesc" name="desc">
                     </div>
                     <div class="form-group">
                         <label for="editMapelImage">Gambar</label>

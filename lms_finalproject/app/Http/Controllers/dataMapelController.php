@@ -54,6 +54,7 @@ class dataMapelController extends Controller
         $request->validate([
             'guru_id' => 'required|exists:gurus,id',
             'name' => 'required|string|max:100',
+            'desc' => 'required|string|min:3|max:2000',
             'image' => 'nullable|file|image|mimes:jpeg,png,jpg|max:2000',
         ]);
 
@@ -64,6 +65,7 @@ class dataMapelController extends Controller
         Mapel::create([
             'guru_id' => $request->guru_id,
             'name' => $request->name,
+            'desc' => $request->desc,
             'image' => '/storage/images/' . $fileName
         ]);
 
@@ -97,12 +99,14 @@ class dataMapelController extends Controller
         $request->validate([
             'guru_id' => 'required|exists:gurus,id',
             'name' => 'required|string|max:100',
+            'desc' => 'required|string|min:3|max:2000',
             'image' => 'nullable|image|file|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $mapel = Mapel::find($id);
         $mapel->guru_id = $request->guru_id;
         $mapel->name = $request->name;
+        $mapel->desc = $request->desc;
         if ($request->hasFile('image')) {
             // Hapus gambar lama
             $imagePath = public_path($mapel->image);

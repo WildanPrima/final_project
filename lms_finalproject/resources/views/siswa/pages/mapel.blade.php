@@ -15,17 +15,17 @@
     @include('siswa.partials.navbar')
     <main class="main-container">
         <div class="container">
-            <h1>Selamat Datang Di Kelas 12! 👋</h1>
+            <h1 class="mb-5">Selamat Datang Di E-Class! 👋</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
                 @foreach($mapels as $mapel)
                     <div class="mapel-card">
-                        <img src="{{ asset($mapel['image']) }}" alt="{{ $mapel['name'] }}">
+                        <img src="{{ asset($mapel->image) }}" alt="{{ $mapel->name }}">
                         <div class="p-4">
-                            <h3 class="text-xl">{{ $mapel['name'] }}</h3>
-                            <p>{{ $mapel['description'] }}</p>
+                            <h3 class="text-xl">{{ $mapel->name }}</h3>
+                            <p>{{ $mapel->desc }}</p>
                             <div class="flex items-center mt-4">
                                 <i class="fas fa-user-graduate text-gray-500"></i>
-                                <span class="ml-2 text-gray-600">{{ $mapel['students'] }} siswa</span>
+                                <span class="ml-2 text-gray-600">{{ $mapel->guru->name }}</span>
                             </div>
                         </div>
                     </div>

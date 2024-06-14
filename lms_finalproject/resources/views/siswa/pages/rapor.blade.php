@@ -12,6 +12,7 @@
     @include('siswa.partials.navbar')
     <section class="container">
         <div class="content">
+            <h2 class="mb-3">Halo {{ $siswa->name }}, berikut adalah nilai kamu</h2>
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" class="form-control" placeholder="Search in your rapor...">
@@ -45,15 +46,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($rapor as $rapor)
-                            <tr>
-                                <td>{{ $rapor['subject'] }}</td>
-                                <td>{{ $rapor['task1'] ?? '' }}</td>
-                                <td>{{ $rapor['task2'] ?? '' }}</td>
-                                <td>{{ $rapor['task3'] ?? '' }}</td>
-                                <td>{{ $rapor['exam'] ?? '' }}</td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr> 
                     </tbody>
                 </table>
             </div>
