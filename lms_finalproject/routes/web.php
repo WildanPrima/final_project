@@ -55,3 +55,5 @@ Route::get('/account-settings', [AccountSettingsController::class, 'index'])->na
 Route::post('/update-account', [AccountSettingsController::class, 'update'])->name('siswa_update');
 Route::get('/rapor', [RaporController::class, 'index'])->name('rapor.index');
 Route::get('/rapor-search', [RaporController::class, 'searching'])->name('searching_rapor');
+Route::get('/get-angkatan-nilai/{angkatanId}', [RaporController::class, 'getAngkatanNilai']);
+

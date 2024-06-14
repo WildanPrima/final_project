@@ -28,7 +28,7 @@
                 <div class="d-flex justify-content-between align-content-center">
                     <p class="mt-4 fs-5">Kelas {{ $angkatanNilai['angkatan']->class }} - <strong>Semester {{ $angkatanNilai['angkatan']->semester }}</strong></p>
                     <div class="text-end">
-                        <button class="btn btn-primary">Download</button>
+                        <button class="btn btn-primary download-btn" data-angkatan-id="{{ $angkatanNilai['angkatan']->id }}">Lihat</button>
                     </div>
                 </div>
                 <div class="table-container">
@@ -72,6 +72,42 @@
                 {{ $angkatans->links() }}
             </div>
         </div>
+
+        {{-- modal download --}}
+        <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="downloadModalLabel">Download Rapor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="printable">
+                        <h5 id="modal-class-semester"></h5>
+                        <table class="table table-bordered" id="modal-table">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Mata Pelajaran</th>
+                                    <th>Tugas 1</th>
+                                    <th>Tugas 2</th>
+                                    <th>Tugas 3</th>
+                                    <th>Ujian</th>
+                                    <th>Rata-rata</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                        <strong>Nilai Rata-rata Keseluruhan: <span id="modal-overall-average"></span></strong>
+                        <h4>Status: <button id="modal-status" class="btn"></button></h4>
+                    </div>                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary cetakPDF">Cetak</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
@@ -105,5 +141,47 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            $(document).on('click', '.download-btn', function () {
+                var angkatanId = $(this).data('angkatan-id');
+    
+                $.ajax({
+                    url: `/get-angkatan-nilai/${angkatanId}`,
+                    method: 'GET',
+                    success: function (data) {
+                        $('#modal-class-semester').text(`Kelas ${data.angkatan.class} - Semester ${data.angkatan.semester}`);
+                        var tableBody = $('#modal-table tbody');
+                        tableBody.empty();
+                        data.nilais.forEach(function (nilai) {
+                            tableBody.append(`
+                                <tr>
+                                    <td>${nilai.mapel.name}</td>
+                                    <td class="text-end">${nilai.tugas1}</td>
+                                    <td class="text-end">${nilai.tugas2}</td>
+                                    <td class="text-end">${nilai.tugas3}</td>
+                                    <td class="text-end">${nilai.ujian}</td>
+                                    <td class="text-end">${nilai.average.toFixed(2)}</td>
+                                </tr>
+                            `);
+                        });
+                        $('#modal-overall-average').text(data.overallAverage.toFixed(2));
+                        var statusButton = $('#modal-status');
+                        statusButton.removeClass('btn-success btn-danger');
+                        if (data.status === 'Lulus') {
+                            statusButton.addClass('btn-success').text(data.status);
+                        } else {
+                            statusButton.addClass('btn-danger').text(data.status);
+                        }
+                        $('#downloadModal').modal('show');
+                    }
+                });
+            });
+    
+            $(document).on('click', '.cetakPDF', function () {
+                window.print();
+            });
+        });
+    </script>
 </body>
 </html>
