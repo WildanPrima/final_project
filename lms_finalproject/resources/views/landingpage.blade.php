@@ -20,7 +20,7 @@
                 <button class="cta">Mulai Sekarang</button>
             </div>
             <div class="hero-image">
-                <img src="hero-image.png" alt="Hero Image">
+                <img src="{{ asset('images/landing page 1.jpg') }}" alt="Hero Image">
             </div>
         </div>
     </section>
@@ -28,13 +28,13 @@
     <section class="feature">
         <div class="container">
             <div class="feature-item">
-                <img src="feature-image1.png" alt="Feature Image">
+                {{-- <img src="feature-image1.png" alt="Feature Image"> --}}
                 <h2>Penilaian yang Mudah</h2>
                 <p>Pengelolaan penilaian tidak pernah semudah ini Dengan fitur Penilaian yang terintegrasi dalam [Nama LMS], proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
                 <button class="cta">Mulai Sekarang</button>
             </div>
             <div class="feature-item">
-                <img src="feature-image2.png" alt="Feature Image">
+                <img src="{{ asset('images/landing page 2.jpg') }}" alt="Hero Image">
                 <h2>Informasi</h2>
                 <p>Lorem Ipsum when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
