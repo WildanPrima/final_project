@@ -18,6 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    use HasRoles;
     protected $guarded = ['id'];
 
     public function siswa()

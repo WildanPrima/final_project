@@ -44,7 +44,8 @@ class RegisterController extends Controller
             }
     
             if ($user) {
-                return redirect()->route('login');
+                return redirect()->route('login')
+                    ->with('success', 'Berhasil Membuat Akun, Ayo Login!');
             } else {
                 return redirect()->route('register')
                     ->with('error', 'Failed to create user');
