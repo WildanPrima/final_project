@@ -7,7 +7,7 @@
                     <a href="/" class="text-decoration-none text-dark me-3">Home</a>
                     <a href="{{ route('mapel.index') }}" class="text-decoration-none text-dark me-3">Mapel</a>
                     @auth
-                        @if (Auth::user()->siswa)
+                        @if (Auth::user()->hasRole('siswa'))
                             <a href="{{ route('rapor.index') }}" class="text-decoration-none text-dark me-3">Rapor</a>
                         @else
                             <a href="{{ route('rapor_admin') }}" class="text-decoration-none text-dark me-3">Rapor</a>    
@@ -21,7 +21,7 @@
                     <button class="signup"><a href="{{ route('register') }}" style="color: white; text-decoration: none">Sign Up</a></button>
                 @endguest
                 @auth
-                    @if (Auth::user()->siswa) 
+                    @if (Auth::user()->hasRole('siswa')) 
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
