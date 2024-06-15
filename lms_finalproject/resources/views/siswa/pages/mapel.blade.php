@@ -22,7 +22,7 @@
                         <img src="{{ asset($mapel->image) }}" alt="{{ $mapel->name }}">
                         <div class="p-4">
                             <h3 class="text-xl">{{ $mapel->name }}</h3>
-                            <p>{{ $mapel->desc }}</p>
+                            <p>{{ Str::limit($mapel->desc, 70) }}</p>
                             <div class="flex items-center mt-4">
                                 <i class="fas fa-user-graduate text-gray-500"></i>
                                 <span class="ml-2 text-gray-600">{{ $mapel->guru->name }}</span>

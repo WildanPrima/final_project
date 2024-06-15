@@ -7,7 +7,7 @@
             <form action="{{ route('searching_angkatan') }}" method="GET">
                 <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="number" class="form-control" placeholder="Cari Kelas..." name="search">
+                    <input type="number" class="form-control" placeholder="Cari Kelas..." name="search" value="{{ request('search') }}">
                 </div>
             </form>
         </div>
@@ -70,7 +70,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="class" class="fw-bold">Kelas</label>
-                        <select name="class" id="class" class="form-select @error('class') is-invalid @enderror">
+                        <select name="class" id="class" class="form-select @error('class') is-invalid @enderror" >
                             <option value="Pilih class" >Pilih kelas</option>
                             <option value="1" {{ old('class') == '1' ? 'selected' : '' }}>Kelas 1</option>
                             <option value="2" {{ old('class') == '2' ? 'selected' : '' }}>Kelas 2</option>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <label for="semester">Semester</label>
-                        <input type="text" class="form-control @error('semester') is-invalid @enderror" id="semester" name="semester" value="{{ old('semester') }}">
+                        <input type="text" class="form-control @error('semester') is-invalid @enderror" id="semester" name="semester" value="{{ old('semester') }}" >
                         @error('semester')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -117,7 +117,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="editClass">Kelas</label>
-                        <select class="form-select" id="editClass" name="class">
+                        <select class="form-select" id="editClass" name="class" >
                             <option value="Pilih kelas">Pilih kelas</option>
                             <option value="1">Kelas 1</option>
                             <option value="2">Kelas 2</option>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editSemester">Semester</label>
-                        <input type="text" class="form-control" id="editSemester" name="semester">
+                        <input type="text" class="form-control" id="editSemester" name="semester" >
                     </div>
                 </div>
                 <div class="modal-footer">

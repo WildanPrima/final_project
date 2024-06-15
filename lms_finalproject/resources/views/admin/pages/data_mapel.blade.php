@@ -7,7 +7,7 @@
             <form action="{{ route('searching_mapel') }}" method="GET">
                 <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Cari Nama Mapel..." name="search">
+                    <input type="text" class="form-control" placeholder="Cari Nama Mapel..." name="search" value="{{ request('search') }}">
                 </div>
             </form>
         </div>
@@ -70,7 +70,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="guru">Nama Guru</label>
-                        <select class="form-select @error('guru_id') is-invalid @enderror" id="guru" name="guru_id">
+                        <select class="form-select @error('guru_id') is-invalid @enderror" id="guru" name="guru_id" required>
                             <option value="Pilih guru">Pilih guru</option>
                             @foreach($guru as $g)
                                 <option value="{{ $g->id }}">{{ $g->name }}</option>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Nama Mapel</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
                         @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group">
                         <label for="desc">Deskripsi Mapel</label>
-                        <input type="text" class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc">
+                        <input type="text" class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc" required>
                         @error('desc')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Gambar</label>
-                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" required>
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}

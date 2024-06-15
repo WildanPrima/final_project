@@ -7,7 +7,7 @@
             <form action="{{ route('searching_siswa') }}" method="GET">
                 <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search">
+                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search" value="{{ request('search') }}">
                 </div>
             </form>
         </div>
@@ -74,7 +74,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="NIS">NIS</label>
-                        <input type="number" class="form-control @error('NIS') is-invalid @enderror" id="NIS" name="NIS" value="{{ old('NIS') }}">
+                        <input type="number" class="form-control @error('NIS') is-invalid @enderror" id="NIS" name="NIS" value="{{ old('NIS') }}" required>
                         @error('NIS')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -83,7 +83,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
                         @error('name')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
                         @error('email')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Alamat</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
                         @error('address')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <label for="agama">Agama</label>
-                        <input type="text" class="form-control @error('agama') is-invalid @enderror" id="agama" name="agama" value="{{ old('agama') }}">
+                        <input type="text" class="form-control @error('agama') is-invalid @enderror" id="agama" name="agama" value="{{ old('agama') }}" required>
                         @error('agama')
                             <div class="invalid-feedback">
                             {{ $message }}
@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group">
                         <label for="gender" class="fw-bold">Gender</label>
-                        <select name="gender" id="gender" class="form-select @error('gender') is-invalid @enderror">
+                        <select name="gender" id="gender" class="form-select @error('gender') is-invalid @enderror" required>
                             <option value="Pilih gender" >Pilih gender</option>
                             <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
                             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" required>
                         @error('phone')
                             <div class="invalid-feedback">
                             {{ $message }}

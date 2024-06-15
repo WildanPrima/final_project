@@ -115,4 +115,92 @@ class RaporController extends Controller
             'status' => $status
         ]);
     }
+
+    public function raporAdmin()
+    {
+        $angkatans = Angkatan::paginate(4);
+        $angkatanNilais = [];
+
+        foreach ($angkatans as $angkatan) {
+            $nilais = Nilai::where('angkatan_id', $angkatan->id)
+                            ->with(['siswa', 'mapel'])
+                            ->get()
+                            ->groupBy('siswa_id');
+
+            foreach ($nilais as $siswaId => $siswaNilais) {
+                $totalNilai = 0;
+                $count = 0;
+
+                foreach ($siswaNilais as $nilai) {
+                    $average = ($nilai->tugas1 + $nilai->tugas2 + $nilai->tugas3 + $nilai->ujian) / 4;
+                    $nilai->average = $average;
+                    $totalNilai += $average;
+                    $count++;
+                }
+
+                $overallAverage = $count ? $totalNilai / $count : 0;
+                $status = $overallAverage >= 70 ? 'Lulus' : 'Tidak Lulus';
+
+                $angkatanNilais[] = [
+                    'angkatan' => $angkatan,
+                    'siswa' => $siswaNilais->first()->siswa,
+                    'nilais' => $siswaNilais,
+                    'overallAverage' => $overallAverage,
+                    'status' => $status
+                ];
+            }
+        }
+
+        return view('siswa.pages.rapor_admin', compact('angkatanNilais', 'angkatans'));
+    }
+
+    public function searchingAdmin(Request $request)
+    {
+        $search = $request->get('search');
+        
+        if ($search) {
+            $siswaQuery = Siswa::where('name', 'like', '%' . $search . '%');
+            $siswaIds = $siswaQuery->pluck('id');
+
+            $angkatans = Angkatan::paginate(4);
+            $angkatanNilais = [];
+
+            foreach ($angkatans as $angkatan) {
+                $nilais = Nilai::whereIn('siswa_id', $siswaIds)
+                                ->where('angkatan_id', $angkatan->id)
+                                ->with(['siswa', 'mapel'])
+                                ->get()
+                                ->groupBy('siswa_id');
+
+                foreach ($nilais as $siswaId => $siswaNilais) {
+                    $totalNilai = 0;
+                    $count = 0;
+
+                    foreach ($siswaNilais as $nilai) {
+                        $average = ($nilai->tugas1 + $nilai->tugas2 + $nilai->tugas3 + $nilai->ujian) / 4;
+                        $nilai->average = $average;
+                        $totalNilai += $average;
+                        $count++;
+                    }
+
+                    $overallAverage = $count ? $totalNilai / $count : 0;
+                    $status = $overallAverage >= 70 ? 'Lulus' : 'Tidak Lulus';
+
+                    $angkatanNilais[] = [
+                        'angkatan' => $angkatan,
+                        'siswa' => $siswaNilais->first()->siswa,
+                        'nilais' => $siswaNilais,
+                        'overallAverage' => $overallAverage,
+                        'status' => $status
+                    ];
+                }
+            }
+        } else {
+            $angkatanNilais = [];
+            $angkatans = Angkatan::paginate(2);
+        }
+
+        return view('siswa.pages.rapor_admin', compact('angkatanNilais', 'angkatans'));
+    }
+
 }

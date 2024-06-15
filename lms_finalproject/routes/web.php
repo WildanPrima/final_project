@@ -30,7 +30,7 @@ Route::view('/', 'landingpage');
 
 
 // Role admin
-Route::prefix('admin')->middleware(['authenticate', 'role:admin'])->group(function ()
+Route::middleware(['authenticate', 'role:admin'])->group(function ()
 {
     Route::get('/admin', [adminController::class, 'index'])->name('admin');
     Route::resource('/data-siswa', siswaController::class);
@@ -43,6 +43,8 @@ Route::prefix('admin')->middleware(['authenticate', 'role:admin'])->group(functi
     Route::get('/search-mapel', [dataMapelController::class, 'searching'])->name('searching_mapel');
     Route::get('/search-angkatan', [angkatanController::class, 'searching'])->name('searching_angkatan');
     Route::get('/search-nilai', [nilaiController::class, 'searching'])->name('searching_nilai');
+    Route::get('/rapor-admin', [RaporController::class, 'raporAdmin'])->name('rapor_admin');
+    Route::get('/rapor-search-admin', [RaporController::class, 'searchingAdmin'])->name('rapor_searching');
 });
 
 // Authentication Routes
@@ -54,7 +56,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Role siswa
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
-Route::prefix('siswa')->middleware(['authenticate', 'role:siswa'])->group(function ()
+Route::middleware(['authenticate', 'role:siswa|admin'])->group(function ()
 {
     Route::get('/account-settings', [AccountSettingsController::class, 'index'])->name('account.settings');
     Route::post('/update-account', [AccountSettingsController::class, 'update'])->name('siswa_update');

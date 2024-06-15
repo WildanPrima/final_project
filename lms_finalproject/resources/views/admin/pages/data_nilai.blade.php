@@ -7,7 +7,7 @@
             <form action="{{ route('searching_nilai') }}" method="GET">
                 <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search">
+                    <input type="text" class="form-control" placeholder="Cari Nama Siswa..." name="search" value="{{ request('search') }}">
                 </div>
             </form>
         </div>
@@ -56,9 +56,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex">
-                            {{ $nilai->links() }}
-                        </div>
+                        @if (!isset($search))
+                            <div class="d-flex">
+                                {{ $nilai->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -82,7 +84,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="siswa_id">Nama Siswa</label>
-                        <select class="form-select @error('siswa_id') is-invalid @enderror" id="siswa_id" name="siswa_id">
+                        <select class="form-select @error('siswa_id') is-invalid @enderror" id="siswa_id" name="siswa_id" required>
                             <option value="">Pilih siswa</option>
                             @foreach ($siswa as $s)
                                 <option value="{{ $s->id }}">{{ $s->name }}</option>
@@ -96,7 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mapel_id">Nama Mapel</label>
-                        <select class="form-select @error('mapel_id') is-invalid @enderror" id="mapel_id" name="mapel_id">
+                        <select class="form-select @error('mapel_id') is-invalid @enderror" id="mapel_id" name="mapel_id" required>
                             <option value="">Pilih mapel</option>
                             @foreach ($mapel as $m)
                                 <option value="{{ $m->id }}">{{ $m->name }}</option>
@@ -110,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="angkatan_id">Kelas & Semester</label>
-                        <select class="form-select @error('angkatan_id') is-invalid @enderror" id="angkatan_id" name="angkatan_id">
+                        <select class="form-select @error('angkatan_id') is-invalid @enderror" id="angkatan_id" name="angkatan_id" required>
                             <option value="">Pilih angkatan</option>
                             @foreach ($angkatan as $a)
                                 <option value="{{ $a->id }}">{{ $a->class }} - {{ $a->semester }}</option>
@@ -124,7 +126,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tugas1">Tugas 1</label>
-                        <input type="number" step="0.01" class="form-control @error('tugas1') is-invalid @enderror" id="tugas1" name="tugas1">
+                        <input type="number" step="0.01" class="form-control @error('tugas1') is-invalid @enderror" id="tugas1" name="tugas1" required>
                         @error('tugas1')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -133,7 +135,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tugas2">Tugas 2</label>
-                        <input type="number" step="0.01" class="form-control @error('tugas2') is-invalid @enderror" id="tugas2" name="tugas2">
+                        <input type="number" step="0.01" class="form-control @error('tugas2') is-invalid @enderror" id="tugas2" name="tugas2" required>
                         @error('tugas2')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -142,7 +144,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tugas3">Tugas 3</label>
-                        <input type="number" step="0.01" class="form-control @error('tugas3') is-invalid @enderror" id="tugas3" name="tugas3">
+                        <input type="number" step="0.01" class="form-control @error('tugas3') is-invalid @enderror" id="tugas3" name="tugas3" required>
                         @error('tugas3')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -151,7 +153,7 @@
                     </div>
                     <div class="form-group">
                         <label for="ujian">Ujian</label>
-                        <input type="number" step="0.01" class="form-control @error('ujian') is-invalid @enderror" id="ujian" name="ujian">
+                        <input type="number" step="0.01" class="form-control @error('ujian') is-invalid @enderror" id="ujian" name="ujian" required>
                         @error('ujian')
                             <div class="invalid-feedback">
                                 {{ $message }}

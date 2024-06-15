@@ -44,9 +44,9 @@ class nilaiController extends Controller
             });
         }
 
-        $nilai = $query->paginate(6);
+        $nilai = $query->get();
 
-        return view('admin.pages.data_nilai', compact('nilai', 'angkatan', 'mapel', 'siswa'));
+        return view('admin.pages.data_nilai', compact('nilai', 'angkatan', 'mapel', 'siswa', 'search'));
     }
 
     /**

@@ -56,8 +56,8 @@ class siswaController extends Controller
             'email' => 'required|string|email|max:255|unique:siswas',
             'address' => 'required|string|max:255',
             'gender' => 'required|in:male,female',
-            'agama' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:255'
+            'agama' => 'required|string|max:255',
+            'phone' => 'required|string|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -115,9 +115,9 @@ class siswaController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'address' => 'required|string|max:255',
-            'agama' => 'nullable|string|max:255',
+            'agama' => 'required|string|max:255',
             'gender' => 'required|string|in:male,female',
-            'phone' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:255',
         ]);
     
         $siswa = Siswa::find($id);
