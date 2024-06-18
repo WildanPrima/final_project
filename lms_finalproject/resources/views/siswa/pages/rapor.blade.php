@@ -2,8 +2,6 @@
 <html>
 <head>
     <title>Rapor</title>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/rapor.css') }}">
@@ -59,7 +57,7 @@
                 </div>
                 <div class="mt-4">
                     <strong>Nilai Rata-rata Keseluruhan: {{ number_format($angkatanNilai['overallAverage'], 2) }}</strong>
-                    <h4>Status: 
+                    <h4>Status:
                         <button class="btn {{ $angkatanNilai['status'] == 'Lulus' ? 'btn-success' : 'btn-danger' }}">
                             {{ $angkatanNilai['status'] }}
                         </button>
@@ -95,12 +93,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                         <strong>Nilai Rata-rata Keseluruhan: <span id="modal-overall-average"></span></strong>
                         <h4>Status: <button id="modal-status" class="btn"></button></h4>
-                    </div>                    
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary cetakPDF">Cetak</button>
@@ -132,9 +130,9 @@
         <div class="footer-section contact-info">
             <h4>Contact</h4>
             <ul>
-                <li><a href="mailto:Brand@gmail.com">Brand@gmail.com</a></li>
+                <li><a href="mailto:Brand@gmail.com">E-class@gmail.com</a></li>
                 <li><a href="tel:+62812345678">+62812345678</a></li>
-                <li><a href="#">@brand</a></li>
+                <li><a href="#">@Eclass</a></li>
             </ul>
         </div>
     </footer>
@@ -145,7 +143,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             $(document).on('click', '.download-btn', function () {
                 var angkatanId = $(this).data('angkatan-id');
-    
+
                 $.ajax({
                     url: `/get-angkatan-nilai/${angkatanId}`,
                     method: 'GET',
@@ -177,7 +175,7 @@
                     }
                 });
             });
-    
+
             $(document).on('click', '.cetakPDF', function () {
                 window.print();
             });

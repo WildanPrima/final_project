@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand LMS</title>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
 </head>
@@ -15,8 +13,8 @@
     <section class="hero">
         <div class="container">
             <div class="hero-text">
-                <h1>Selamat Datang di [Nama LMS]</h1>
-                <p>Brand adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan [Nama Brand] menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
+                <h1>Selamat Datang di [E-class]</h1>
+                <p>E-class adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan E-class menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
                 <button class="cta">Mulai Sekarang</button>
             </div>
             <div class="hero-image">
@@ -28,15 +26,14 @@
     <section class="feature">
         <div class="container">
             <div class="feature-item">
-                {{-- <img src="feature-image1.png" alt="Feature Image"> --}}
                 <h2>Penilaian yang Mudah</h2>
-                <p>Pengelolaan penilaian tidak pernah semudah ini Dengan fitur Penilaian yang terintegrasi dalam [Nama LMS], proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
+                <p>Pengelolaan penilaian tidak pernah semudah ini Dengan fitur Penilaian yang terintegrasi dalam E-class, proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
                 <button class="cta">Mulai Sekarang</button>
             </div>
             <div class="feature-item">
                 <img src="{{ asset('images/landing page 2.jpg') }}" alt="Hero Image">
                 <h2>Informasi</h2>
-                <p>Lorem Ipsum when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>E-class menyediakan berbagai informasi terkini mengenai proses belajar mengajar, perkembangan teknologi pendidikan, dan tips untuk memaksimalkan penggunaan LMS. Kami berkomitmen untuk selalu memberikan informasi yang berguna dan up-to-date bagi para pengguna kami.</p>
             </div>
         </div>
     </section>
@@ -66,9 +63,9 @@
         <div class="footer-section contact-info">
             <h4>Contact</h4>
             <ul>
-                <li><a href="mailto:Brand@gmail.com">Brand@gmail.com</a></li>
+                <li><a href="mailto:Brand@gmail.com">E-class@gmail.com</a></li>
                 <li><a href="tel:+62812345678">+62812345678</a></li>
-                <li><a href="#">@brand</a></li>
+                <li><a href="#">@Eclass</a></li>
             </ul>
         </div>
     </footer>
