@@ -40,7 +40,7 @@
 
     <footer>
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="logo">Brand</h1>
+            <h1 class="logo">E-class</h1>
         </div>
 
         <div class="footer-section">

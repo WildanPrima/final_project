@@ -34,7 +34,7 @@
 
     <footer>
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="logo">Brand</h1>
+            <h1 class="logo">E-class</h1>
         </div>
 
         <div class="footer-section">
@@ -57,7 +57,7 @@
         <div class="footer-section contact-info">
             <h4>Contact</h4>
             <ul>
-                <li><a href="mailto:E-class@gmail.com">Brand@gmail.com</a></li>
+                <li><a href="mailto:E-class@gmail.com">E-class@gmail.com</a></li>
                 <li><a href="tel:+62812345678">+62812345678</a></li>
                 <li><a href="#">@Eclass</a></li>
             </ul>
