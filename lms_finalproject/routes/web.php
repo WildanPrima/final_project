@@ -29,6 +29,7 @@ use App\Http\Controllers\nilaiController;
 Route::view('/', 'landingpage');
 
 
+
 // Role admin
 Route::middleware(['authenticate', 'role:admin'])->group(function ()
 {

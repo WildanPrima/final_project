@@ -8,16 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/mapel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landingpage.css') }}">
-    <style>
-        .mapel-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .mapel-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+
 </head>
 <body>
     @include('siswa.partials.navbar')
@@ -85,36 +76,35 @@
         </div>
     </div>
 
-    <footer>
-        <div class="d-flex justify-content-between align-items-center">
-            <h1 class="logo">E-class</h1>
-        </div>
+    <footer id="footer" class="footer">
 
-        <div class="footer-section">
-            <h4>Company</h4>
-            <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </div>
+        <div class="footer-content">
+          <div class="container">
+            <div class="row">
 
-        <div class="footer-column">
-            <h3>Navigation</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Mapel</a></li>
-                <li><a href="#">Rapor</a></li>
-            </ul>
-        </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="footer-info">
+                  <h3>E-class</h3>
+                  <p>
+                    Canggu,Bali,Indonesia <br>
+                    80351<br><br>
+                    <strong>Phone:</strong> +62 9872382902<br>
+                    <strong>Email:</strong> eclass@gmail.com<br>
+                  </p>
+                </div>
+              </div>
 
-        <div class="footer-section contact-info">
-            <h4>Contact</h4>
-            <ul>
-                <li><a href="mailto:E-class@gmail.com">E-class@gmail.com</a></li>
-                <li><a href="tel:+62812345678">+62812345678</a></li>
-                <li><a href="#">@Eclass</a></li>
-            </ul>
-        </div>
+              <div class="col-lg-2 col-md-6 footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                  <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{ route('mapel.index') }}">Mapel</a></li>
+                  <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Rapor</a></li>
+                </ul>
+              </div>
+              <div class="copyright">
+                &copy; Copyright <strong><span>E-class</span></strong>2024
+              </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -123,7 +113,7 @@
         $(document).ready(function() {
             $('.show-mapel').on('click', function() {
                 var mapelId = $(this).data('id');
-        
+
                 $.ajax({
                     url: '/mapel-show/' + mapelId,
                     method: 'GET',
@@ -132,7 +122,7 @@
                         $('#mapelName').text(data.mapel.name);
                         $('#guruName').text(data.guru.name);
                         $('#mapelDesc').text(data.mapel.desc);
-        
+
                         $('#mapelModal').modal('show');
                     },
                     error: function(xhr, status, error) {
