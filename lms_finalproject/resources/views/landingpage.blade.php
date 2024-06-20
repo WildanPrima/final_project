@@ -13,7 +13,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-text">
-                <h1>Selamat Datang di [E-class]</h1>
+                <h1>Selamat Datang di E-class! 👋</h1>
                 <p>E-class adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan E-class menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
                 <button class="cta rounded"><a href="{{ route('login') }}" class="text-decoration-none text-white">Mulai Sekarang</a></button>
             </div>
