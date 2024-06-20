@@ -31,7 +31,12 @@
                 <div class="row mb-3">
                     <div class="col-md-4 profile-photo">
                         <img class="profile-img rounded-circle" src="{{ $siswa->pas_foto ? asset($siswa->pas_foto) : asset('images/profile-picture.png') }}" alt="Profile Picture" id="profileImg" name="pas_foto" style="width:250px; height:250px; border-radius: 50%; object-fit: cover; cursor: pointer;">
-                        <input type="file" class="form-control mt-2" name="pas_foto" id="profileImageUpload" accept="image/*" style="display: none;">
+                        <input type="file" class="form-control mt-2 @error('pas_foto') is-invalid @enderror" name="pas_foto" id="profileImageUpload" accept="image/*" style="display: none;">
+                        @error('pas_foto')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         <small class="form-text text-muted">Jika anda ingin ganti foto profile, ukuran gambar harus di bawah 2MB </small>
                     </div>
                     <div class="col-md-8">
@@ -46,12 +51,22 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ $siswa->email }}">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $siswa->email }}">
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 <small class="form-text text-muted">Ubah, jika anda ingin mengubah</small>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="phone">No Telp</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="{{ $siswa->phone }}">
+                                <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ $siswa->phone }}">
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 <small class="form-text text-muted">Ubah, jika anda ingin mengubah</small>
                             </div>
                             <div class="col-md-6 mb-3">
