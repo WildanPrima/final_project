@@ -56,6 +56,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Role siswa
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel.index');
+Route::get('/mapel-show/{id}', [MapelController::class, 'show'])->name('mapel.show');
 Route::middleware(['authenticate', 'role:siswa|admin'])->group(function ()
 {
     Route::get('/account-settings', [AccountSettingsController::class, 'index'])->name('account.settings');

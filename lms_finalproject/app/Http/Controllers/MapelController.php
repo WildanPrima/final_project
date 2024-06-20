@@ -16,4 +16,13 @@ class MapelController extends Controller
         return view('siswa.pages.mapel', compact('mapels', 'guru'));
     }
 
+    public function show($id)
+    {
+        $mapel = Mapel::with('guru')->findOrFail($id);
+
+        return response()->json([
+            'mapel' => $mapel,
+            'guru' => $mapel->guru
+        ]);
+    }
 }
