@@ -83,6 +83,24 @@ body {
     text-decoration: none;
 }
 
+.auth-buttons button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.auth-buttons .login {
+    background: #fff;
+    color: #000;
+    border: 1px solid #7f3ce7;
+}
+
+.auth-buttons .signup {
+    background: #7f3ce7;
+    color: #fff;
+}
+
 .footer {
     color: #fff;
     font-size: 14px;
