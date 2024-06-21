@@ -16,9 +16,9 @@
                 <h1>Selamat Datang di E-class! 👋</h1>
                 <p>E-class adalah platform Learning Management System (LMS) yang memudahkan proses belajar mengajar secara digital. Dirancang untuk institusi pendidikan E-class menawarkan berbagai fitur untuk pengalaman belajar yang optimal.</p>
                 @auth
-                    <button class="cta rounded"><a href="{{ route('mapel.index') }}" class="text-decoration-none text-white">Lihat Mapel</a></button>
+                  <button class="cta rounded"><a href="{{ route('mapel.index') }}" class="text-decoration-none text-white">Lihat Mapel</a></button>
                 @else
-                    <button class="cta rounded"><a href="{{ route('login') }}" class="text-decoration-none text-white">Mulai Sekarang</a></button>
+                  <button class="cta rounded"><a href="{{ route('login') }}" class="text-decoration-none text-white">Mulai Sekarang</a></button>
                 @endauth
             </div>
             <div class="hero-image">
@@ -33,7 +33,11 @@
                 <h2>Penilaian yang Mudah</h2>
                 <p>Pengelolaan penilaian tidak pernah semudah ini Dengan fitur Penilaian yang terintegrasi dalam E-class, proses penilaian menjadi lebih mudah dan efisien bagi pendidik.</p>
                 @auth
+                  @if (Auth::user()->hasRole('siswa'))
                     <button class="cta rounded"><a href="{{ route('rapor.index') }}" class="text-decoration-none text-white">Lihat Rapor</a></button>
+                  @else
+                    <button class="cta rounded"><a href="{{ route('rapor_admin') }}" class="text-decoration-none text-white">Lihat Rapor</a></button>
+                  @endif
                 @else
                     <button class="cta rounded"><a href="{{ route('login') }}" class="text-decoration-none text-white">Mulai Sekarang</a></button>
                 @endauth
