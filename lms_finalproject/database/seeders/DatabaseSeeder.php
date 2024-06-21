@@ -69,5 +69,14 @@ class DatabaseSeeder extends Seeder
         $user5->assignRole('admin');
         Guru::where('NIP', $user5->username)
                 ->update(['id_user' => $user5->id]);
+
+        // user 6
+        $user6 = User::create([
+            'username' => '456789',
+            'password' => Hash::make('123456')
+        ]);
+        $user6->assignRole('admin');
+        Guru::where('NIP', $user6->username)
+                ->update(['id_user' => $user6->id]);
     }
 }
